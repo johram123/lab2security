@@ -9,7 +9,6 @@ export default function LoginForm({ setToken }) {
     event.preventDefault();
     performLogin(username, password);
 
-    setUsername("");
     setPassword("");
   };
 
@@ -41,32 +40,34 @@ export default function LoginForm({ setToken }) {
     }
   }
 
-return (
-  <div className="glass-container">
-  <form onSubmit={handleSubmit}>
-    <div className="input-box">
-      <label>
-        Username:
-        <input
-          type="text"
-          name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
+  return (
+    <div className="glass-container">
+      <form onSubmit={handleSubmit}>
+        <div className="input-box">
+          <label>
+            Username:
+            <input
+              type="text"
+              name="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </label>
+          <label>
+            Password:
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+        </div>
+        {message && <p className="error-message">{message}</p>}
+        <button type="submit" className="login-btn">
+          Login
+        </button>
+      </form>
     </div>
-    {message && <p className="error-message">{message}</p>}
-    <button type="submit" className="login-btn">Login</button>
-  </form>
-</div>
-);
+  );
 }
