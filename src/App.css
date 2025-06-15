@@ -1,38 +1,206 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #111214;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media (prefers-color-scheme: dark), (prefers-color-scheme: light) {
+  :root,
+  body {
+    color-scheme: only light;
+    background: #111214 !important;
+    color: #f5f6fa !important;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.glass-container {
+  background: rgba(80, 80, 90, 0.22);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  margin: 48px auto;
+  max-width: 420px;
+  width: 100%;
+  color: #f5f6fa;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+/* Glitter effect: animated dots overlay */
+.glass-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.5;
+  background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.18) 1.2px,
+      transparent 1.2px
+    ),
+    radial-gradient(circle, rgba(255, 255, 255, 0.1) 0.8px, transparent 0.8px);
+  background-size: 32px 32px, 18px 18px;
+  background-position: 0 0, 12px 8px;
+  animation: glitter-dots 2.5s linear infinite;
+}
+
+@keyframes glitter-dots {
+  0% {
+    background-position: 0 0, 12px 8px;
+  }
+  100% {
+    background-position: 32px 32px, 30px 26px;
+  }
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 90%;
+  padding: 0.85rem;
+  margin: 0.7rem 0 1.2rem 0;
+  border-radius: 14px;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f5f6fa;
+  font-size: 1.08rem;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: background 0.2s;
+}
+
+.input-box input[type="text"],
+.input-box input[type="password"] {
+  margin-top: 0.4rem;
+  margin-bottom: 0.2rem;
+}
+
+.input-box {
+  background: rgba(80, 80, 90, 0.22);
+  border-radius: 14px;
+  padding: 1.2rem 1rem 1.2rem 1rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+  align-items: stretch;
 }
 
-.App-link {
-  color: #61dafb;
+.input-box label {
+  color: #f5f6fa;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
 }
 
-@keyframes App-logo-spin {
-  from {
+button {
+  background: rgba(200, 200, 210, 0.18);
+  color: #f5f6fa;
+  border: none;
+  border-radius: 14px;
+  padding: 0.85rem 1.7rem;
+  font-size: 1.08rem;
+  cursor: pointer;
+  margin-top: 1.2rem;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.22);
+  color: #222;
+}
+
+.fact {
+  font-size: 1.22rem;
+  margin: 1.7rem 0;
+  color: #f5f6fa;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.error-message {
+  color: #ff6b6b;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.spinner {
+  margin: 28px auto;
+  border: 4px solid rgba(255, 255, 255, 0.12);
+  border-top: 4px solid #888b92;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
   }
+}
+
+.login-btn {
+  width: 100%;
+  margin-top: 0.8rem;
+  background: rgba(200, 200, 210, 0.18);
+  color: #f5f6fa;
+  border: none;
+  border-radius: 14px;
+  padding: 0.85rem 1.7rem;
+  font-size: 1.08rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.login-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  color: #222;
+}
+
+button.logout {
+  background: #7a2323;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 0.85rem 1.7rem;
+  font-size: 1.08rem;
+  cursor: pointer;
+  margin-top: 1.2rem;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+button.logout:hover {
+  background: #ff3b3b;
+  color: #fff;
 }
